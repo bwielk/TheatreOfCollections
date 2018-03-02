@@ -22,5 +22,37 @@ public class Theatre {
 	public String getTheatreName(){
 		return theatreName;
 	}
-
+	
+	public boolean reserveSeat(String seatNumber){
+		Seat requestedSeat = null;
+		for(Seat seat : seats){
+			if(seat.getSeatNumber().equals(seatNumber)){
+				requestedSeat = seat;
+				break;
+			}
+		}
+		if(requestedSeat == null){
+			return false;
+		}else{
+			return requestedSeat.reserve();
+		}
+	}
+	
+	private class Seat{
+		private final String seatNumber;
+		private boolean reserved = false;
+		
+		public Seat(String seatNumber){
+			this.seatNumber = seatNumber;
+		}
+		
+		public boolean reserve(){
+			if(!this.reserved){
+				this.reserved = true;
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
 }

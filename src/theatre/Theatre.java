@@ -2,6 +2,10 @@ package theatre;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Theatre {
 	
@@ -14,7 +18,7 @@ public class Theatre {
 		for(char row = 'A'; row <= lastRow; row++){
 			for(int seatNum = 1; seatNum <= seatsPerRow; seatNum++){
 				Seat seat = new Seat(row + String.format("%02d", seatNum));
-				seats.add(seat);
+				((List<Seat>) seats).add(seat);
 			}
 		}
 	}
@@ -24,17 +28,12 @@ public class Theatre {
 	}
 	
 	public boolean reserveSeat(String seatNumber){
-		Seat requestedSeat = null;
-		for(Seat seat : seats){
-			if(seat.getSeatNumber().equals(seatNumber)){
-				requestedSeat = seat;
-				break;
-			}
-		}
-		if(requestedSeat == null){
-			return false;
+		Seat requestedSeat = new Seat(seatNumber);
+		int foundSeat = Collections.binarySearch(seats, requestedSeat, null);
+		if(foundSeat >= 0){
+			return ((ArrayList<Seat>) seats).get(foundSeat).reserve();
 		}else{
-			return requestedSeat.reserve();
+			return false;
 		}
 	}
 	
@@ -44,7 +43,7 @@ public class Theatre {
 		}
 	}
 	
-	private class Seat{
+	private class Seat implements Comparable<Seat>{
 		private final String seatNumber;
 		private boolean reserved = false;
 		
@@ -72,6 +71,11 @@ public class Theatre {
 		
 		public String getSeatNumber(){
 			return this.seatNumber;
+		}
+
+		@Override
+		public int compareTo(Seat seatToCompare) {
+			return this.seatNumber.compareToIgnoreCase(seatToCompare.getSeatNumber());
 		}
 	}
 }

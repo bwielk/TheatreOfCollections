@@ -38,6 +38,12 @@ public class Theatre {
 		}
 	}
 	
+	public void getSeats() {
+		for(Seat seat : seats){
+			System.out.println(seat.getSeatNumber());
+		}
+	}
+	
 	private class Seat{
 		private final String seatNumber;
 		private boolean reserved = false;
@@ -53,6 +59,19 @@ public class Theatre {
 			}else{
 				return false;
 			}
+		}
+		
+		public boolean cancel(){
+			if(this.reserved){
+				this.reserved = false;
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+		public String getSeatNumber(){
+			return this.seatNumber;
 		}
 	}
 }

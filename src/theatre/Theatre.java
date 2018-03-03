@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +12,19 @@ public class Theatre {
 	
 	private final String theatreName;
 	private ArrayList<Seat> seats = new ArrayList<Seat>();
+	
+	static final Comparator<Seat> PRICE_ORDER = new Comparator<Theatre.Seat>(){
+		@Override
+		public int compare(Seat seat1, Seat seat2){
+			if(seat1.getSeatPrice() < seat2.getSeatPrice()){
+				return -1;
+			}else if(seat1.getSeatPrice() > seat2.getSeatPrice()){
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+	};
 	
 	public Theatre(String theatreName, int numRows, int seatsPerRow){
 		this.theatreName = theatreName;

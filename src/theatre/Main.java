@@ -5,12 +5,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import theatre.Theatre.Seat;
+
+
 public class Main {
 	
 	public static void main(String[] args){
 		Theatre theatre = new Theatre("Cameo", 2, 10);
 		//Array with exactly the same data like the one in the instance of Theatre.theatre
-		ArrayList<Theatre.Seat> seatCopy = new ArrayList<>(theatre.seats);
+		//ArrayList<Theatre.Seat> seatCopy = new ArrayList<>(theatre.seats);
+		ArrayList<Theatre.Seat> seatCopy = (ArrayList<Seat>) theatre.getArrayOfSeats();
 		printList(seatCopy);
 		
 		System.out.println("/////////////////////REVERSED////////////////////////");
@@ -33,6 +37,9 @@ public class Main {
 		sortList(seatCopy);
 		System.out.println("After SORTING");
 		printList(seatCopy);
+		
+		System.out.println("/////////////////////DEEP COPIES////////////////////////");
+		
 		/*
 		theatre.getSeats();
 		if(theatre.reserveSeat("B05")){

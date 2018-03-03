@@ -29,6 +29,7 @@ public class Main {
 			System.out.println("The seat is already reserved by someone else");
 		}
 		
+		//Sorting using the static Comparator instance of the Theatre class
 		ArrayList<Seat> priceSeats = new ArrayList<>(theatre.getArrayOfSeats());
 		priceSeats.add(theatre.new Seat("B00", 13.00));
 		priceSeats.add(theatre.new Seat("A00", 13.00));

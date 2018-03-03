@@ -67,7 +67,7 @@ public class Theatre {
 		return seats;
 	}
 	
-	class Seat implements Comparable<Seat>{
+	public class Seat implements Comparable<Seat>{
 		private final String seatNumber;
 		private double price;
 		private boolean reserved = false;

@@ -14,8 +14,8 @@ public class Main {
 		Theatre theatre = new Theatre("Cameo", 2, 10);
 		//Array with exactly the same data like the one in the instance of Theatre.theatre
 		//ArrayList<Theatre.Seat> seatCopy = new ArrayList<>(theatre.seats);
-		ArrayList<Theatre.Seat> seatCopy = (ArrayList<Seat>) theatre.getArrayOfSeats();
-		printList(seatCopy);
+		//ArrayList<Theatre.Seat> seatCopy = (ArrayList<Seat>) theatre.getArrayOfSeats();
+		//printList(seatCopy);
 		
 		if(theatre.reserveSeat("A05")){
 			System.out.println("You've reserved your seat");
@@ -29,8 +29,11 @@ public class Main {
 			System.out.println("The seat is already reserved by someone else");
 		}
 		
-		
-		
+		ArrayList<Seat> priceSeats = new ArrayList<>(theatre.getArrayOfSeats());
+		priceSeats.add(theatre.new Seat("B00", 13.00));
+		priceSeats.add(theatre.new Seat("A00", 13.00));
+		Collections.sort(priceSeats, Theatre.PRICE_ORDER);
+		printList(priceSeats);
 		/*
 		System.out.println("/////////////////////REVERSED////////////////////////");
 		Collections.reverse(seatCopy);
